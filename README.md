@@ -2,5 +2,7 @@
 ultralyticsのdocker環境を使ったyoloのテストを行うワークスペース
 
 # How to use Dokcer
+```bash
 cd /path_to_dir/ultralytics_ws
 sh docker/run.sh
+```
