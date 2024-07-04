@@ -1,0 +1,9 @@
+# Specify filepatterns you want git to ignore.
+
+runs/*
+!runs/.gitkeep
+
+datasets/*
+!datasets/.gitkeep
+
+*.pt
