@@ -1,6 +1,7 @@
 services:
   ultralytics_ws:
     hostname: ultralytics_ws
+    shm_size: '8gb'
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
