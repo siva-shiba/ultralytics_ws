@@ -24,6 +24,7 @@ services:
       - NUMBA_CACHE_DIR=/tmp
     volumes:
       - ../:/ultralytics_ws
+      - ../runs:/ultralytics/runs
       - /tmp/.X11-unix:/tmp/.X11-unix
     runtime: nvidia
     tty: true
