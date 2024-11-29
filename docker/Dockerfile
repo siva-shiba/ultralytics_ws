@@ -12,7 +12,7 @@ RUN groupadd -g $GID $GROUPNAME
 RUN useradd -m -u $UID -g $GID $USERNAME
 
 RUN chown $USERNAME:$GROUPNAME -R /ultralytics_ws
-RUN chown $USERNAME:$GROUPNAME -R /usr/src/ultralytics
+RUN chown $USERNAME:$GROUPNAME -R /ultralytics
 
 USER $USERNAME
 
