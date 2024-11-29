@@ -1,4 +1,4 @@
-FROM ultralytics/ultralytics:latest
+FROM docker.io/ultralytics/ultralytics:latest
 
 WORKDIR /ultralytics_ws
 
