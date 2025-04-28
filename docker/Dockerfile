@@ -2,6 +2,10 @@ FROM docker.io/ultralytics/ultralytics:latest
 
 WORKDIR /ultralytics_ws
 
+
+RUN pip install --upgrade pip
+RUN pip install neptune
+
 # ユーザー指定
 ARG UID
 ARG GID
