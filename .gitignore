@@ -3,7 +3,10 @@
 runs/*
 !runs/.gitkeep
 
+siva-shiba/*
+
 datasets/*
 !datasets/.gitkeep
 
 *.pt
+.token
