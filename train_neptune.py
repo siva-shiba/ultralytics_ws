@@ -12,6 +12,10 @@ def parse_args():
     parser.add_argument("data_yaml", type=str, help="学習データのyamlファイルパス")
     parser.add_argument("--project", type=str, required=True,
                         help="Neptuneのプロジェクト名 (例: 'siva-shiba/project-name')")
+    parser.add_argument(
+        "-e", "--epochs", default=20, type=int, help="エポック数 (default:20)")
+    parser.add_argument(
+        "-w", "--weights", default=None, type=str, help="追加学習の時の重みファイル.pt指定 (default:None)")
     return parser.parse_args()
 
 
@@ -29,22 +33,22 @@ def main(args):
     os.environ["NEPTUNE_PROJECT"] = args.project
     os.environ["NEPTUNE_API_TOKEN"] = get_token()
 
-    global run
-    run = neptune.init_run()
-
     # Load a model
-    MODEL_NAME = "yolov8n-seg"
+    if args.weights is not None:
+        MODEL_NAME = args.weights
+    else:
+        MODEL_NAME = "yolov8n-seg"
     model = YOLO(MODEL_NAME)
 
-    print(model.callbacks)
-
+    print(f"Using args: {args}")
     # Train the model
     results = model.train(
         data=args.data_yaml,
-        epochs=20,
+        epochs=args.epochs,
         imgsz=640,
         save_period=1,
         project=args.project,
+        resume=(args.weights is not None),
     )
 
 
