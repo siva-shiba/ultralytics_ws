@@ -15,7 +15,7 @@ def parse_args():
     parser.add_argument(
         "-e", "--epochs", default=20, type=int, help="エポック数 (default:20)")
     parser.add_argument(
-        "-w", "--weights", default=None, type=str, help="追加学習の時の重みファイル.pt指定 (default:None)")
+        "-w", "--weights", default="yolov8n-seg", type=str, help="追加学習の時の重みファイル.pt指定 (default:yolov8n-seg)")
     return parser.parse_args()
 
 
@@ -34,11 +34,7 @@ def main(args):
     os.environ["NEPTUNE_API_TOKEN"] = get_token()
 
     # Load a model
-    if args.weights is not None:
-        MODEL_NAME = args.weights
-    else:
-        MODEL_NAME = "yolov8n-seg"
-    model = YOLO(MODEL_NAME)
+    model = YOLO(args.weights)
 
     print(f"Using args: {args}")
     # Train the model
@@ -47,8 +43,7 @@ def main(args):
         epochs=args.epochs,
         imgsz=640,
         save_period=1,
-        project=args.project,
-        resume=(args.weights is not None),
+        project=args.project
     )
 
 
